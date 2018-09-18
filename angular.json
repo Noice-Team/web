@@ -27,6 +27,7 @@
               "src/styles.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.js",
               "semantic/dist/semantic.min.js"
             ]
           },
@@ -126,5 +127,10 @@
       }
     }
   },
-  "defaultProject": "webt"
+  "defaultProject": "webt",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
