@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'test' ]
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'build' ]
+- name: 'gcr.io/${PROJECT_ID}/firebase'
+  args: [ 'deploy', '--project', '${PROJECT_ID}', '--token', '$$FIREBASE_TOKEN', '--only', 'hosting']
+  secretEnv: ['FIREBASE_TOKEN']
+
+secrets:
+- kmsKeyName: 'projects/x-dev-ew3/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
+  secretEnv:
+    FIREBASE_TOKEN: 'CiQA8wnE9Me+PDbshsQMZT/xwQVQarsFGD9zpgSXVlMtu4hgcA0SVgBYl1a7j0RLaElELa0WMfS6nVuk9+V1XfScMCHHZ2SEppt3eE8asPHT8FmoOPJDpGLVKl7Lk4d2bNbxAP5/fSzt87IHnvY+Wnm8gK57giEEWTYnDCNE'
