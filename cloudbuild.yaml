@@ -11,4 +11,4 @@ steps:
 secrets:
 - kmsKeyName: 'projects/x-dev-ew3/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
   secretEnv:
-    FIREBASE_TOKEN: 'CiQA8wnE9EvkcUw6pNSSxSk4UejggM70p1qM7N5IRjPZO1U7RoISbQBYl1a7rq7hJFce/UC+bkvtqMAHIhIIB6MltO7PO2jph34oC3FF3K0gzQDHjVGim1y7llDgbQGn0CL4eOm3XZlNOj2uLnzVYxNkyf6LTAAcVYb8DVI1bqKo/xa2pdrgHrxU+trkECXr6M0AXiQ='
+    FIREBASE_TOKEN: '4payOMOFb1RYwqxPw6LCv8OWUOKYvMK+4oCXVEzDsXLCucKmR8O3w4nDp8Ofw4bimaBX4pmA4pWXw6/imYBOw6HDoMOGw5ZP4pmjw7PDmsOWw4vDo33ilKzDp8OF4paRVVjDssK1Y+KUvOKGkSEo4oaVYOKWoOKGk1hQb2viloTimabilpPDhMOrw7XDgsO/U8Ko'
