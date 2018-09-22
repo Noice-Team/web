@@ -4,8 +4,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: [ 'run', 'build' ]
 - name: 'gcr.io/x-dev-ew3/firebase'
-  args: [ 'deploy', '--project', 'x-dev-ew3', '--token', '"1/Us_dWeJbpw0DM5tHETBAdN13F6Uc_wuOpcu24mOaIXu3ZXBnks4nLsh08GBGYhE5"',
-          '--non-interactive', '--only', 'hosting']
+  args: [ 'deploy --project x-dev-ew3 --token "1/Us_dWeJbpw0DM5tHETBAdN13F6Uc_wuOpcu24mOaIXu3ZXBnks4nLsh08GBGYhE5" --non-interactive --only hosting']
   secretEnv: ['FIREBASE_SECRET']
 
 
