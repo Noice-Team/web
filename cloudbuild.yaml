@@ -1,13 +1,12 @@
 steps:
-- name: 'gcr.io/x-dev-ew3/firebase'
-  args: ['list', '--project', 'x-dev-ew3']
-  secretEnv: ['FIREBASE_TOKEN']
-#- name: 'gcr.io/cloud-builders/npm'
-#  args: ['install', '--no-optional']
-#- name: 'gcr.io/cloud-builders/npm'
-#  args: [ 'run', 'build' ]
-#  args: [ 'deploy --project x-dev-ew3 --token "1/Us_dWeJbpw0DM5tHETBAdN13F6Uc_wuOpcu24mOaIXu3ZXBnks4nLsh08GBGYhE5" --non-interactive --only hosting']
 
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install', '--no-optional']
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'build' ]
+- name: 'gcr.io/x-dev-ew3/firebase'
+  args: [ 'deploy, '-P', 'x-dev-ew3', '--token', '1/Us_dWeJbpw0DM5tHETBAdN13F6Uc_wuOpcu24mOaIXu3ZXBnks4nLsh08GBGYhE5']
+  secretEnv: ['FIREBASE_TOKEN']
 
 secrets:
 - kmsKeyName: 'projects/x-dev-ew3/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-secret'
