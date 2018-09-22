@@ -1,3 +1,28 @@
-<p>
-  item works!
-</p>
+ng-container *ngIf="signed;else unsigned">
+    <a class="item" [routerLink]="['/home']" [routerLinkActive]="'active'">
+        <i class="home icon"></i>
+        Home
+    </a>
+    <div class="right menu">
+        <a class="item" (click)="signout()">
+            <i class="sign out icon"></i>
+            Signout
+        </a>
+    </div>
+</ng-container>
+<ng-template #unsigned>
+    <a class="item" [routerLink]="['/home']" [routerLinkActive]="'active'">
+        <i class="home icon"></i>
+        Home
+    </a>
+    <div class="right menu">
+        <a class="item" [routerLink]="['/signin']" [routerLinkActive]="'active'">
+            <i class="sign in icon"></i>
+            Signin
+        </a>
+        <a class="item" [routerLink]="['/signup']" [routerLinkActive]="'active'">
+            <i class="add user icon"></i>
+            Signup
+        </a>
+    </div>
+</ng-template>
