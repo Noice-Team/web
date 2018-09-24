@@ -13,7 +13,7 @@ export class MenuComponent implements  AfterViewInit{
   @Output() onSignout:EventEmitter<any> = new EventEmitter();
 
   ngAfterViewInit(){
-      $('.main.menu').visibility({
+      /*$('.main.menu').visibility({
           type: 'fixed',
           onFixed :function(){
               $(this).removeClass('labeled icon');
@@ -21,7 +21,7 @@ export class MenuComponent implements  AfterViewInit{
           onUnfixed :function()  {
               $(this).addClass('labeled icon');
           }
-      });
+      });*/
   }
 
   signout(){
