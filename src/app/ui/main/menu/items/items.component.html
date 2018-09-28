@@ -16,11 +16,11 @@
         Home
     </a>
     <div class="right menu">
-        <a class="item" [routerLink]="['/signin']" [routerLinkActive]="'active'">
+        <a class="item" (click)="signin()">
             <i class="sign in icon"></i>
             Signin
         </a>
-        <a class="item" [routerLink]="['/signup']" [routerLinkActive]="'active'">
+        <a class="item" (click)="signup()">
             <i class="add user icon"></i>
             Signup
         </a>
