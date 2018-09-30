@@ -27,7 +27,7 @@
     "jquery": "^3.2.1",
     "ng2-semantic-ui": "^0.9.7",
     "rxjs": "~6.2.0",
-    "semantic-ui": "^2.4.0",
+
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
