@@ -27,15 +27,11 @@ export class ItemsComponent {
   }
 
   signin(){
-    if(this.screen == Screen.MOBILE){
       this.router.navigate(['./signin']);
-    }
   }
 
   signup(){
-    if(this.screen == Screen.MOBILE){
       this.router.navigate(['./singup']);
-    }
   }
 
 }

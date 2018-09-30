@@ -1,2 +1,13 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<app-menu (onSideBarToggled)="sidebar.toggle()"></app-menu>
+<sui-sidebar-container class="ui bottom attached segment">
+    <sui-sidebar class="vertical" #sidebar>
+      <a class="item"  [routerLink]="['/home']" [routerLinkActive]="'active'">
+          <i class="home icon"></i>
+          Home
+      </a>
+      <div app-menu-items [signed]="signed" (onSignout)="signout()"></div>
+    </sui-sidebar>
+    <sui-sidebar-sibling [isDimmedWhenVisible]="true">
+        <router-outlet></router-outlet>
+    </sui-sidebar-sibling>
+</sui-sidebar-container>
