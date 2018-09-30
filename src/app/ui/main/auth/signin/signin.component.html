@@ -1,3 +1,29 @@
-<p>
-  signin works!
-</p>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui primary header">Signin</h2>
+    <form class="ui large form">
+      <div class="ui raised segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="user" placeholder="Username or e-mail adress" />
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+      </div>
+      <div class="ui large form">
+        <div class="ui field">
+          <div class="ui fluid large primary submit button">Signin</div>
+        </div>
+        <div class="ui field">
+          <button (click)="false;">or use a provider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
