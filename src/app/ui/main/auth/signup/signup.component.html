@@ -1,3 +1,40 @@
-<p>
-  signup works!
-</p>
+<div class="primary ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui primary header">Signup</h2>
+    <form class="ui large form">
+      <div class="ui horizontal raised segments">
+        <div class="ui raised segment" [suiTransition]="formTransitionController">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="user" placeholder="Username or e-mail adress" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Password">
+            </div>
+          </div>
+        </div>
+        <div class="ui raised segment" [suiTransition]="providerTransitionController">
+          <div class="ui horizontal list">
+              <div *ngFor="let provider of providers" class="item">
+                <button [attr.class]="'ui circular icon button '+provider" >
+                  <i [attr.class]="provider+' icon'"></i>
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui large form">
+        <div class="ui field">
+          <div class="ui fluid large primary submit button">Signin</div>
+        </div>
+        <div class="ui field">
+          <a (click)="toogleProvider();">or use a provider</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

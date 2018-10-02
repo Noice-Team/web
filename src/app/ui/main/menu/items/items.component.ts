@@ -31,7 +31,7 @@ export class ItemsComponent {
   }
 
   signup(){
-      this.router.navigate(['./singup']);
+      this.router.navigate(['./signup']);
   }
 
 }
