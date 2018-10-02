@@ -1,9 +1,13 @@
 :host{
-  .grid{
+  .primary.grid{
     min-height:100vh;
     height:100;
   }
   .column {
-      max-width: 450px;
+    max-width: 450px;
+  }
+
+    div.ui.raised.segment.animating{
+
     }
 }
