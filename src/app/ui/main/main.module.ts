@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import {SuiModule} from 'ng2-semantic-ui';
@@ -14,6 +15,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MainRoutingModule,
     SuiModule
   ],

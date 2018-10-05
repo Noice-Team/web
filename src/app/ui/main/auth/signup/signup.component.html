@@ -1,40 +1,103 @@
 <div class="primary ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui primary header">Signup</h2>
-    <form class="ui large form">
+    <div class="ui large error form">
       <div class="ui horizontal raised segments">
         <div class="ui raised segment" [suiTransition]="formTransitionController">
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" name="user" placeholder="Username or e-mail adress" />
+          <form (submit)="toogleProvider();" #usernameForm="ngForm">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="username" placeholder="Username" [(ngModel)]="signupData.username"
+                  required minlength="4"
+                  #username="ngModel"/>
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                class="ui compact error message">
+                <div class="header">Invalid username</div>
+                <div *ngIf="username.errors.required">
+                    Username required.
+                </div>
+                <div *ngIf="username.errors.minlength">
+                    Username must be at least 4 characters long.
+                </div>
             </div>
-          </div>
+          </form>
         </div>
         <div class="ui raised segment" [suiTransition]="providerTransitionController">
-          <div class="ui horizontal list">
-              <div *ngFor="let provider of providers" class="item">
-                <button [attr.class]="'ui circular icon button '+provider" >
-                  <i [attr.class]="provider+' icon'"></i>
-                </button>
+          <form (ngSubmit)="submit();" #providerForm="ngForm">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="envelope icon"></i>
+                <input type="email" name="email" placeholder="Email"  [(ngModel)]="signupData.email"
+                  required email
+                  #email="ngModel"/>
               </div>
-          </div>
+            </div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="ui compact error message">
+                <div class="header">Invalid email</div>
+                <div *ngIf="email.errors.required">
+                    Email required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Email is invalid.
+                </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="Password"  [(ngModel)]="signupData.password"
+                  required minlength="8" validateEqual="confirmPassword" reverse="true"
+                  #password="ngModel"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="confirmPassword" placeholder="Confirm password"  [(ngModel)]="signupData.confirmPassword"
+                  required minlength="8" validateEqual="password"
+                  #confirmPassword="ngModel"/>
+              </div>
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="ui compact error message">
+                <div class="header">Invalid password</div>
+                <div *ngIf="password.errors.required">
+                    Password required.
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    Password must be at least 8 characters long.
+                </div>
+                <div *ngIf="password.errors.validateEqual">
+                    Passwords don't match.
+                </div>
+            </div>
+            <div class="ui horizontal divider">
+              Or
+            </div>
+            <div class="ui horizontal list">
+                <div *ngFor="let provider of providers" class="item">
+                  <button [attr.class]="'ui circular icon button '+provider" >
+                    <i [attr.class]="provider+' icon'"></i>
+                  </button>
+                </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="ui large form">
-        <div class="ui field">
-          <div class="ui fluid large primary submit button">Signin</div>
+        <div *ngIf="providerState" class="ui field">
+          <button class="ui left large submit button" (click)="toogleProvider();">Previous</button>
+          <button class="ui right large primary submit button"
+            [disabled]="!providerForm.form.valid" (click)="submit();">Signup</button>
         </div>
-        <div class="ui field">
-          <a (click)="toogleProvider();">or use a provider</a>
+        <div *ngIf="!providerState" class="ui field">
+          <button class="ui large primary submit button"
+            [disabled]="!usernameForm.form.valid" (click)="toogleProvider();">Next</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>

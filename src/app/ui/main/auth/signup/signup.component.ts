@@ -5,7 +5,6 @@ import {TransitionController, Transition, TransitionDirection} from "ng2-semanti
 
 import { Providers } from '../providers';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,10 +19,13 @@ export class SignupComponent {
 
     public signupData = {
       username:'',
-      provider:''
+      email:'',
+      password:'',
+      confirmPassword:''
     };
 
-    constructor(public afAuth: AngularFireAuth) {}
+    constructor(
+      private afAuth: AngularFireAuth) {}
 
 
     public toogleProvider() {
@@ -42,5 +44,9 @@ export class SignupComponent {
           }));
       }
       this.providerState = !this.providerState;
+    }
+
+    public submit(){
+      this.afAuth.auth.createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
     }
 }
