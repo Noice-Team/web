@@ -26,7 +26,7 @@
           </form>
         </div>
         <div class="ui raised segment" [suiTransition]="providerTransitionController">
-          <form (ngSubmit)="submit();" #providerForm="ngForm">
+          <form (ngSubmit)="providerForm.valid && submit();" #providerForm="ngForm">
             <div class="field">
               <div class="ui left icon input">
                 <i class="envelope icon"></i>
@@ -70,7 +70,11 @@
                 <div *ngIf="password.errors.minlength">
                     Password must be at least 8 characters long.
                 </div>
-                <div *ngIf="password.errors.validateEqual">
+
+            </div>
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+                class="ui compact error message">
+                <div *ngIf="confirmPassword.errors.validateEqual">
                     Passwords don't match.
                 </div>
             </div>

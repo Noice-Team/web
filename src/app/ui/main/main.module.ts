@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import {SuiModule} from 'ng2-semantic-ui';
 
+import { SharedModule } from '../../shared/shared.module';
+
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +19,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     CommonModule,
     FormsModule,
     MainRoutingModule,
-    SuiModule
+    SuiModule,
+    SharedModule
   ],
   declarations: [MainComponent, HomeComponent, MenuComponent, ItemsComponent,
     SigninComponent, SignupComponent]

@@ -12,6 +12,7 @@ import { EqualValidator } from './ui/validators/equal-validator.directive';
   entryComponents:[
        MessageModalComponent, QuestionModalComponent
    ],
-  declarations: [MessageModalComponent, QuestionModalComponent, EqualValidator]
+  declarations: [MessageModalComponent, QuestionModalComponent, EqualValidator],
+  exports: [EqualValidator]
 })
 export class SharedModule { }

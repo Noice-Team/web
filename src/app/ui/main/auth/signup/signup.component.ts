@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
 
 import { Providers } from '../providers';
+
+import { User, UserService } from '../../../../models/';
 
 @Component({
   selector: 'app-signup',
@@ -24,8 +25,10 @@ export class SignupComponent {
       confirmPassword:''
     };
 
+
     constructor(
-      private afAuth: AngularFireAuth) {}
+      private afAuth: AngularFireAuth,
+      private userService: UserService) {}
 
 
     public toogleProvider() {
@@ -47,6 +50,15 @@ export class SignupComponent {
     }
 
     public submit(){
-      this.afAuth.auth.createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
+      this.afAuth.auth
+        .createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
+        .then((data:any) => {
+          this.userService.create(data.user.uid, this.signupData.username)
+            .then(() => console.log("created"))
+            .catch(error => console.error(error));
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
 }
