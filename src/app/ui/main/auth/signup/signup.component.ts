@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
 
@@ -27,6 +28,7 @@ export class SignupComponent {
 
 
     constructor(
+      private router: Router,
       private afAuth: AngularFireAuth,
       private userService: UserService) {}
 
@@ -54,7 +56,7 @@ export class SignupComponent {
         .createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
         .then((data:any) => {
           this.userService.create(data.user.uid, this.signupData.username)
-            .then(() => console.log("created"))
+            .then(() => this.router.navigate(['/']))
             .catch(error => console.error(error));
         })
         .catch(error => {

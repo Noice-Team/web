@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,16 +7,5 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class MenuComponent {
 
-  @Input() signed:boolean;
-  @Output() onSignout:EventEmitter<any> = new EventEmitter();
   @Output() onSideBarToggled:EventEmitter<any> = new EventEmitter();
-
-
-  signout(){
-      this.onSignout.emit(null);
-  }
-
-  toggleSide(){
-      this.onSideBarToggled.emit(null);
-  }
 }

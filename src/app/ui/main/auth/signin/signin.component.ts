@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import {TransitionController, Transition, TransitionDirection} from "ng2-semantic-ui";
+import { Router } from '@angular/router';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { Providers } from '../providers';
 
 @Component({
   selector: 'app-signin',
@@ -7,28 +11,23 @@ import {TransitionController, Transition, TransitionDirection} from "ng2-semanti
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent{
-  private providerState = false;
-  public formTransitionController = new TransitionController();
-  public providerTransitionController = new TransitionController(false);
+  public providers = Object.values(Providers);
+  public signinData = {
+    email:'',
+    password:''
+  };
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private afAuth: AngularFireAuth) { }
 
-
-  public toogleProvider() {
-    if(this.providerState){
-      this.providerTransitionController.animate(
-        new Transition('fly right', 200, TransitionDirection.Out, () => {
-          this.formTransitionController.animate(
-            new Transition('fly left', 200, TransitionDirection.In));
-        }));
-    }
-    else{
-      this.formTransitionController.animate(
-        new Transition('fly right', 200, TransitionDirection.Out, () => {
-          this.providerTransitionController.animate(
-            new Transition('fly left', 200, TransitionDirection.In));
-        }));
-    }
-    this.providerState = !this.providerState;
+  public signin():void{
+    this.afAuth.auth.signInWithEmailAndPassword(this.signinData.email, this.signinData.password)
+    .then(() => {
+      this.router.navigate(['/']);
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 }
