@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 
-import { AngularFireAuth } from '@angular/fire/auth';
 
-import { ScreenService, Screen } from '../../../../services/client/screen.service';
+import { ScreenService, Screen, SessionService } from '../../../../services/';
+import { User } from '../../../../models/';
 
 @Component({
   selector: '[app-menu-items]',
@@ -13,29 +13,29 @@ import { ScreenService, Screen } from '../../../../services/client/screen.servic
 export class ItemsComponent {
 
   private screen:Screen;
-  private user:firebase.User;
+  public user:User;
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth,
+    private sessionService: SessionService,
     private screenService:ScreenService){
       this.screenService.subject.subscribe({
         next : (x) => this.screen = x
       });
-      this.afAuth.authState.subscribe(user => {
+      this.sessionService.user.subscribe(user => {
         this.user = user;
       });
   }
 
   signout(){
-      this.afAuth.auth.signOut();
+      this.sessionService.signOut();
   }
 
-    signin(){
-        this.router.navigate(['./signin']);
-    }
+  signin(){
+      this.router.navigate(['./signin']);
+  }
 
-    signup(){
-        this.router.navigate(['./signup']);
-    }
+  signup(){
+      this.router.navigate(['./signup']);
+  }
 }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
@@ -18,6 +20,21 @@ export class UserService{
   }
 
   public create(id:string, name:string){
-    return this.userCollection.add({id:id, name:name});
+    let user:User = new User();
+    user.id = id;
+    user.name = name;
+    return this.userCollection.doc(user.id).set(Object.assign({}, user));
+  }
+
+  public getUser(id:string): Observable<User>{
+    return this.userCollection.doc(id).get()
+    .pipe(
+      map(document => {
+        if(document.exists){
+          return Object.assign(new User(), document.data())
+        }
+        throw new Error('user.notfound');
+      })
+    );
   }
 }

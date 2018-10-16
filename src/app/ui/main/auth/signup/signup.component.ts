@@ -5,7 +5,7 @@ import {TransitionController, Transition, TransitionDirection} from "ng2-semanti
 
 import { Providers } from '../providers';
 
-import { User, UserService } from '../../../../models/';
+import { UserService } from '../../../../models/';
 
 @Component({
   selector: 'app-signup',
