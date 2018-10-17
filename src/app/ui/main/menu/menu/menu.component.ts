@@ -8,4 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class MenuComponent {
 
   @Output() onSideBarToggled:EventEmitter<any> = new EventEmitter();
+  
+  toggleSide(){
+    this.onSideBarToggled.emit(null);
+  }
 }
