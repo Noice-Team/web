@@ -10,7 +10,7 @@ import { Lobby } from './lobby.model';
 })
 export class CollectionProviderService {
 
-	private static get COLLECTION_NAME(){ return 'Lobby';};
+	private static get COLLECTION_NAME(){ return 'Lobbies';};
 
 	private lobbyCollection: AngularFirestoreCollection<Lobby>;
 
