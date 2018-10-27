@@ -1,0 +1,10 @@
+@import '../../../../../style/variables.scss';
+
+:host{
+	.no-lobby{
+		background-color:$light-grey;
+		td{
+			padding:40px 0;
+		}
+	}
+}

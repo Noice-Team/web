@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { LobbyRoutingModule } from './lobby-routing.module';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateComponent } from './create/create.component';
+import { CreateCommonComponent } from './create/create-common/create-common.component';
+import { CreatePageComponent } from './create/create-page/create-page.component';
+import { CreateModalComponent } from './create/create-modal/create-modal.component';
 
 
 @NgModule({
@@ -12,6 +14,6 @@ import { CreateComponent } from './create/create.component';
     CommonModule,
     LobbyRoutingModule
   ],
-  declarations: [MainComponent, DashboardComponent, CreateComponent]
+  declarations: [MainComponent, DashboardComponent, CreateCommonComponent, CreatePageComponent, CreateModalComponent]
 })
 export class LobbyModule { }

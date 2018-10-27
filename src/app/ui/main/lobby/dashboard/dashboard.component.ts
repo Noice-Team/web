@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 import { Subscription } from 'rxjs';
 
 import { LobbyService, Lobby } from'../../../../models/';
@@ -13,8 +14,9 @@ export class DashboardComponent {
 	public lobbies:Array<Lobby>;
 	private lobbiesSubscription:Subscription;
 
-  constructor(private lobbyService:LobbyService) {
-		console.log(this.lobbyService);
+  constructor(
+    private router: Router,
+		private lobbyService:LobbyService) {
 		this.onPage(0);
 	}
 
@@ -25,5 +27,9 @@ export class DashboardComponent {
 		this.lobbiesSubscription = this.lobbyService.getAll(page, 30).subscribe(lobbies => {
 			this.lobbies = lobbies;
 		})
+	}
+
+	public create(){
+		this.router.navigate(['./create']);
 	}
 }
