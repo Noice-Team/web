@@ -1,1 +1,4 @@
-<app-create-common></app-create-common>
+<form (ngSubmit)="submit();">
+	<app-create-common #child></app-create-common>
+  <button class="ui button" type="submit">Submit</button>
+</form>

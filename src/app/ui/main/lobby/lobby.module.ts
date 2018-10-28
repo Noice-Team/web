@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { LobbyRoutingModule } from './lobby-routing.module';
@@ -12,6 +13,7 @@ import { CreateModalComponent } from './create/create-modal/create-modal.compone
 @NgModule({
   imports: [
     CommonModule,
+		FormsModule,
     LobbyRoutingModule
   ],
   declarations: [MainComponent, DashboardComponent, CreateCommonComponent, CreatePageComponent, CreateModalComponent]
