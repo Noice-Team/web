@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreatePageComponent } from './create/create-page/create-page.component';
 
 const routes: Routes = [
   { path:'', component: MainComponent,
     children:[
       {path:'', redirectTo:'dashboard'},
-      {path:'dashboard', component:DashboardComponent}
+      {path:'dashboard', component:DashboardComponent},
+      {path:'create', component:CreatePageComponent}
     ]
   }
 ];

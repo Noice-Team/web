@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, QueryFn } from '@angular/fire/firestore';
 
-import { ModelsModule } from '../models.module';
 import { Lobby } from './lobby.model';
 
 @Injectable({
-  providedIn: ModelsModule
+  providedIn: 'root'
 })
 export class CollectionProviderService {
 
 	private static get COLLECTION_NAME(){ return 'Lobby';};
 
-	private lobbyCollection: AngularFirestoreCollection<Lobby>;
-
 	public constructor(
     private afStore: AngularFirestore){
-    this.lobbyCollection = this.afStore.collection<Lobby>(CollectionProviderService.COLLECTION_NAME);
   }
 
-	public get(): AngularFirestoreCollection<Lobby>{
-		return this.lobbyCollection;
+	public get(queryFn?:QueryFn): AngularFirestoreCollection<Lobby>{
+		return this.afStore.collection<Lobby>(CollectionProviderService.COLLECTION_NAME, queryFn);
 	}
 }

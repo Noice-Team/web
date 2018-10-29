@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { UserService, User } from '../../models/user';
 
+export { User } from '../../models/user';
+
 @Injectable({
   providedIn: 'root'
 })

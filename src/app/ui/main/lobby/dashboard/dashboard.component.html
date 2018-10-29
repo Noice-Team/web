@@ -1,5 +1,9 @@
 <div>
-	<table class="ui celled table">
+	<div>
+		<button class="ui right floated button" (click)="create();">create</button>
+		 <h2 class="ui header">Lobby</h2>
+	</div>
+	<table class="ui compact unstackable celled table">
 	  <thead>
 	    <tr>
 				<th>Name</th>
@@ -8,11 +12,20 @@
 	  	</tr>
 		</thead>
 	  <tbody>
-	    <tr>
-	      <td data-label="Name">Dummy</td>
-	      <td data-label="Age">1/7</td>
-	      <td data-label="Job">Something</td>
-	    </tr>
+			<ng-container *ngIf="lobbies && lobbies.length > 0;else noLobby">
+				<tr *ngFor="let lobby of lobbies">
+		      <td data-label="Name">Dummy</td>
+		      <td data-label="Capacity">1/7</td>
+		      <td data-label="Type">Something</td>
+		    </tr>
+			</ng-container>
+	    <ng-template #noLobby>
+				<tr class="no-lobby center aligned">
+		      <td data-label="Name" colspan="3">
+						No lobby found
+					</td>
+		    </tr>
+			</ng-template>
 	  </tbody>
 	</table>
 </div>
