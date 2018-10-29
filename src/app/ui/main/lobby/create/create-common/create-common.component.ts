@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LobbyService, Lobby } from'../../../../../models/';
+import { LobbyService, Lobby, GameType } from'../../../../../models/';
 import { SessionService, User } from'../../../../../services/';
 
 @Component({
@@ -9,6 +9,8 @@ import { SessionService, User } from'../../../../../services/';
   styleUrls: ['./create-common.component.scss']
 })
 export class CreateCommonComponent {
+
+	public types=Object.keys(GameType).filter(k => typeof GameType[k] === "number").map(k => ""+k);
 
 	public data:Lobby = new Lobby();
   constructor(
@@ -22,7 +24,7 @@ export class CreateCommonComponent {
 		}
 
 		public submit():void{
-			console.log("submit");
+			console.log("submit", this.types);
 		}
 
 }
