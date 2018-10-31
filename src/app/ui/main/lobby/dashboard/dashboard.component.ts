@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router, ActivatedRoute} from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 
 import { LobbyService, Lobby } from'../../../../models/';
@@ -14,9 +14,9 @@ export class DashboardComponent {
 	public lobbies:Array<Lobby>;
 	private lobbiesSubscription:Subscription;
 
-  constructor(
-	  private route: ActivatedRoute,
-    private router: Router,
+	constructor(
+	  	private route: ActivatedRoute,
+		private router: Router,
 		private lobbyService:LobbyService) {
 		this.onPage(0);
 	}

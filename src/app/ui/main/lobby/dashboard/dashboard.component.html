@@ -6,22 +6,24 @@
 	<table class="ui compact unstackable celled table">
 	  <thead>
 	    <tr>
-				<th>Name</th>
+			<th>Name</th>
 	    	<th>Capacity</th>
 	    	<th>Type</th>
+	    	<th>Creation</th>
 	  	</tr>
 		</thead>
 	  <tbody>
 			<ng-container *ngIf="lobbies && lobbies.length > 0;else noLobby">
 				<tr *ngFor="let lobby of lobbies">
-		      <td data-label="Name">Dummy</td>
-		      <td data-label="Capacity">1/7</td>
-		      <td data-label="Type">Something</td>
+		      <td data-label="Name"><a [routerLink]="['..', 'lobby', lobby.id]">{{lobby.name}}</a></td>
+		      <td data-label="Capacity">1/{{lobby.size}}</td>
+		      <td data-label="Type">{{lobby.gameType}}</td>
+		      <td data-label="Type">{{lobby.creationDate | date}}</td>
 		    </tr>
 			</ng-container>
 	    <ng-template #noLobby>
 				<tr class="no-lobby center aligned">
-		      <td data-label="Name" colspan="3">
+		      <td data-label="Name" colspan="4">
 						No lobby found
 					</td>
 		    </tr>

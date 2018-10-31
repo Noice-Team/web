@@ -1,18 +1,25 @@
 <div class="ui container form">
 	<h2 class="ui header">Create a game</h2>
-	<div class="field">
-        <label>Game's name</label>
-        <input [(ngModel)]="data._name"
-            type="text" name="game-name" placeholder="Game's name">
-    </div>
-    <div class="ui segment">
-        <div class="ui two column very relaxed grid">
-            <div *ngFor="let gameType of types" class="column">
+	<div class="two fields">
+		<div class="field">
+	        <label>Game's name</label>
+	        <input [(ngModel)]="data.name"
+	            type="text" name="game-name" placeholder="Game's name">
+	    </div>
+		<div class="field">
+	        <label>Game's size</label>
+	        <input [(ngModel)]="data.size"
+	            type="number" min="2" name="game-size" placeholder="Game's size">
+	    </div>
+	</div>
+    <div class="ui link six centered  cards">
+        <div  *ngFor="let gameType of types" class="ui card"
+			[class.raised]="data.gameType == gameType"
+			[class.selected]="data.gameType == gameType"
+			(click)="data.gameType = gameType;">
+    		<div class="content">
                 {{gameType}}
             </div>
-        </div>
-        <div class="ui vertical divider">
-            OR
         </div>
     </div>
 </div>

@@ -7,11 +7,13 @@ export class ObjectsUtilsService {
 
   constructor() { }
 
-	public toPOJO(source:any, dest?:any, transform?:(i:string) => string):any{
+	public toPOJO(source:any, dest?:any, filter?:(i:string)=>boolean, transform?:(i:string) => string):any{
 		if(!dest){
 			dest = {};
 		}
 		for(let key in source){
+			if(filter && !filter(key))
+				continue;
 			let newKey = transform ? transform(key) : key;
 			dest[newKey] = source[key];
 		}

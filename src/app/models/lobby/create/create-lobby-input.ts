@@ -1,6 +1,9 @@
-export class CreateInput{
+import { GameType } from '../../game';
+
+export class CreateLobbyInput{
 	private _owner:string;
 	private _name:string;
+	private _gameType:GameType;
 	private _size:number;
 
 	public get name():string{return this._name;}
@@ -8,6 +11,9 @@ export class CreateInput{
 
 	public get owner():string{return this._owner;}
 	public set owner(owner:string){this._owner = owner;}
+
+	public get gameType():GameType{return this._gameType;}
+	public set gameType(gameType:GameType){this._gameType = gameType;}
 
 	public get size():number{return this._size;}
 	public set size(size:number){this._size = size;}

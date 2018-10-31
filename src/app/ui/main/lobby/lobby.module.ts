@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateCommonComponent } from './create/create-common/create-common.component';
 import { CreatePageComponent } from './create/create-page/create-page.component';
 import { CreateModalComponent } from './create/create-modal/create-modal.component';
+import { LobbyComponent } from './lobby/lobby.component';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import { CreateModalComponent } from './create/create-modal/create-modal.compone
 		FormsModule,
     LobbyRoutingModule
   ],
-  declarations: [MainComponent, DashboardComponent, CreateCommonComponent, CreatePageComponent, CreateModalComponent]
+  declarations: [MainComponent, DashboardComponent, CreateCommonComponent, CreatePageComponent, CreateModalComponent, LobbyComponent]
 })
 export class LobbyModule { }

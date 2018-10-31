@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore, AngularFirestoreCollection, QueryFn } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection,
+	 	AngularFirestoreDocument, QueryFn } from '@angular/fire/firestore';
 
 import { Lobby } from './lobby.model';
 
@@ -9,13 +10,17 @@ import { Lobby } from './lobby.model';
 })
 export class CollectionProviderService {
 
-	private static get COLLECTION_NAME(){ return 'Lobby';};
+	private static get COLLECTION_NAME(){ return 'Lobbies';};
 
 	public constructor(
-    private afStore: AngularFirestore){
-  }
+		private afStore: AngularFirestore){
+	}
 
-	public get(queryFn?:QueryFn): AngularFirestoreCollection<Lobby>{
+	public getOne(id:string): AngularFirestoreDocument<Lobby>{
+		return this.afStore.collection<Lobby>(CollectionProviderService.COLLECTION_NAME).doc(id)
+	}
+
+	public getMany(queryFn?:QueryFn): AngularFirestoreCollection<Lobby>{
 		return this.afStore.collection<Lobby>(CollectionProviderService.COLLECTION_NAME, queryFn);
 	}
 }

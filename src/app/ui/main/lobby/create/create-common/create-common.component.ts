@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
-import { LobbyService, Lobby, GameType } from'../../../../../models/';
-import { SessionService, User } from'../../../../../services/';
+import { LobbyService, CreateLobbyInput, GameType } from'../../../../../models/';
+import { SessionService } from'../../../../../services/';
 
 @Component({
   selector: 'app-create-common',
@@ -9,22 +9,31 @@ import { SessionService, User } from'../../../../../services/';
   styleUrls: ['./create-common.component.scss']
 })
 export class CreateCommonComponent {
+	@Output()
+	public onCreated = new EventEmitter<number>();
 
 	public types=Object.keys(GameType).filter(k => typeof GameType[k] === "number").map(k => ""+k);
 
-	public data:Lobby = new Lobby();
+	public data:CreateLobbyInput = new CreateLobbyInput();
   constructor(
-		private lobbyService:LobbyService,
-		private sessionService:SessionService) {
-			sessionService.user.subscribe(user => {
-				if(user == null)
-					return;
-				this.data.name = user.name+"'s game";
-			})
-		}
+	private lobbyService:LobbyService,
+		sessionService:SessionService) {
+		sessionService.user.subscribe(user => {
+			if(user == null)
+				return;
+			this.data.name = user.name+"'s game";
+			this.data.owner = user.id;
+		})
+	}
 
-		public submit():void{
-			console.log("submit", this.types);
+	public submit():void{
+		if(!this.data.owner){
+			//TODO error
+			return;
 		}
-
+		this.lobbyService.createLobby(this.data).then((result)=>{
+			console.log(result);
+			this.onCreated.emit();
+		});
+	}
 }

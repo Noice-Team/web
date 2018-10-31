@@ -4,7 +4,7 @@ import { AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { ObjectsUtilsService } from '../../../services';
 import { CollectionProviderService } from '../collection-provider.service';
-import { CreateInput } from './create-input';
+import { CreateLobbyInput } from './create-lobby-input';
 import { Lobby } from '../lobby.model';
 
 @Injectable({
@@ -16,10 +16,11 @@ export class CreateLobbyService {
 	constructor(
 		private objectsUtils:ObjectsUtilsService,
 		collectionService:CollectionProviderService) {
-			this.collection = collectionService.get();
+			this.collection = collectionService.getMany();
 		}
 
-		public create(input:CreateInput){
-			return this.collection.add(this.objectsUtils.toPOJO(input, {_members:[]}));
+		public create(input:CreateLobbyInput){
+			return this.collection.add(this.objectsUtils.toPOJO(input, {_members:[input.owner], _creationDate:new Date()},
+				(key) => key.startsWith("_")));
 		}
 }

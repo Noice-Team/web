@@ -1,4 +1,5 @@
 <form (ngSubmit)="submit();">
-	<app-create-common #child></app-create-common>
-  <button class="ui button" type="submit">Submit</button>
+	<a routerLink="../dashboard" class="float left"> back </a>
+	<app-create-common #child (onCreated)="onCreated()"></app-create-common>
+  	<button class="ui button" type="submit">Submit</button>
 </form>

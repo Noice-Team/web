@@ -1,0 +1,6 @@
+<ng-container *ngIf="lobby; else noSet">
+	{{lobby.name}}
+</ng-container>
+<ng-template #noSet>
+	wait
+</ng-template>
