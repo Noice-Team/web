@@ -6,7 +6,7 @@
 
 	<h3 class="ui header">Members</h3>
 
-	<div *ngIf="lobby.members[0].name withLoading" class="ui cards">
+	<div *ngIf="lobby.members && lobby.members[0] && lobby.members[0].name withLoading" class="ui cards">
 		<div *ngFor="let member of lobby.members" class="card">
     		<div class="content">
 				<div class="header">

@@ -27,10 +27,10 @@ export class LobbyComponent {
 		});
 	  	activatedRoute.paramMap.subscribe(params => {
 			let id = params.get('id');
-			this.lobbyService.getOne(id).subscribe(lobby => {
+			this.lobbyService.getOne(id, true).subscribe(lobby => {
 				this.lobby = lobby;
 				this.checkIsIn();
-				(<Array<string>>this.lobby.members).includes('a');
+
 				this.userService.getByIds(<Array<string>>this.lobby.members).then(users =>{
 					this.lobby.members = users;
 				});

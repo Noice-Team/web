@@ -26,8 +26,8 @@ export class LobbyService {
 	public getAll(start?:number, size?:number):Observable<Array<Lobby>>{
 		return this.getLobby.getAll(start, size);
 	}
-	public getOne(id:string):Observable<Lobby>{
-		return this.getLobby.getOne(id);
+	public getOne(id:string, getMembers?:boolean):Observable<Lobby>{
+		return this.getLobby.getOne(id, getMembers);
 	}
 	public join(id:string){
 		this.updateLobby.join(id);
