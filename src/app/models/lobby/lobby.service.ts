@@ -6,6 +6,7 @@ import { Lobby } from './lobby.model';
 
 import { CreateLobbyService, CreateLobbyInput } from './create';
 import { GetLobbyService } from './get';
+import { UpdateLobbyService } from './update';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class LobbyService {
 
 	public constructor(
 		private createLobbyService:CreateLobbyService,
-		private getLobby:GetLobbyService){
+		private getLobby:GetLobbyService,
+		private updateLobby:UpdateLobbyService){
   }
 
 	public createLobby(input:CreateLobbyInput){
@@ -26,5 +28,8 @@ export class LobbyService {
 	}
 	public getOne(id:string):Observable<Lobby>{
 		return this.getLobby.getOne(id);
+	}
+	public join(id:string){
+		this.updateLobby.join(id);
 	}
 }

@@ -9,7 +9,7 @@ export class Lobby{
 	private _gameType:GameType;
 	private _size:number;
 	private _creationDate:Date;
-	private _members:Array<User>;
+	private _members:Array<User|string>;
 
 	public get id():string{return this._id;}
 	public set id(id:string){this._id = id;}
@@ -29,6 +29,6 @@ export class Lobby{
 	public get creationDate():Date{return this._creationDate;}
 	public set creationDate(creationDate:Date){this._creationDate = creationDate;}
 
-	public get members():Array<User>{return this._members;}
-	public set members(members:Array<User>){this._members = members;}
+	public get members():Array<User|string>{return this._members;}
+	public set members(members:Array<User|string>){this._members = members;}
 }

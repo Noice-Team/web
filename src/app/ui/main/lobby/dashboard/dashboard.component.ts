@@ -12,6 +12,7 @@ import { LobbyService, Lobby } from'../../../../models/';
 export class DashboardComponent {
 
 	public lobbies:Array<Lobby>;
+
 	private lobbiesSubscription:Subscription;
 
 	constructor(

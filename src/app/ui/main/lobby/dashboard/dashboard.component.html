@@ -3,31 +3,65 @@
 		<button class="ui right floated button" (click)="create();">create</button>
 		 <h2 class="ui header">Lobby</h2>
 	</div>
-	<table class="ui compact unstackable celled table">
-	  <thead>
-	    <tr>
-			<th>Name</th>
-	    	<th>Capacity</th>
-	    	<th>Type</th>
-	    	<th>Creation</th>
-	  	</tr>
-		</thead>
-	  <tbody>
-			<ng-container *ngIf="lobbies && lobbies.length > 0;else noLobby">
-				<tr *ngFor="let lobby of lobbies">
-		      <td data-label="Name"><a [routerLink]="['..', 'lobby', lobby.id]">{{lobby.name}}</a></td>
-		      <td data-label="Capacity">1/{{lobby.size}}</td>
-		      <td data-label="Type">{{lobby.gameType}}</td>
-		      <td data-label="Type">{{lobby.creationDate | date}}</td>
-		    </tr>
-			</ng-container>
-	    <ng-template #noLobby>
-				<tr class="no-lobby center aligned">
-		      <td data-label="Name" colspan="4">
-						No lobby found
-					</td>
-		    </tr>
-			</ng-template>
-	  </tbody>
-	</table>
+	<div class="blurring dimmable">
+	    <div *ngIf="!lobbies; else dimmerElse" class="ui inverted  active dimmer">
+	        <div class="ui loader"></div>
+	    </div>
+		<ng-template #dimmerElse><div>
+
+		</div></ng-template>
+		<table class="ui compact unstackable celled table">
+		  <thead>
+		    <tr>
+				<th>Name</th>
+		    	<th>Capacity</th>
+		    	<th>Type</th>
+		    	<th>Creation</th>
+		  	</tr>
+			</thead>
+		  	<tbody>
+			 	<ng-container *ngIf="lobbies; else loading">
+					<ng-container *ngIf="lobbies.length > 0;else noLobby">
+						<tr *ngFor="let lobby of lobbies">
+							<td data-label="Name"><a [routerLink]="['..', 'lobby', lobby.id]">{{lobby.name}}</a></td>
+							<td data-label="Capacity">1/{{lobby.size}}</td>
+							<td data-label="Type">{{lobby.gameType}}</td>
+							<td data-label="Type">{{lobby.creationDate | date}}</td>
+						</tr>
+					</ng-container>
+					<ng-template #noLobby>
+						<tr class="no-lobby center aligned">
+							<td data-label="Name" colspan="4">
+								No lobby found
+							</td>
+						</tr>
+					</ng-template>
+				</ng-container>
+				<ng-template #loading>
+					<tr *ngFor="let i of [0,1,2,3,4] ">
+						<td data-label="Name">
+							<div class="ui placeholder">
+								<div class="line"></div>
+							</div>
+						</td>
+						<td data-label="Capacity">
+							<div class="ui placeholder">
+								<div class="line"></div>
+							</div>
+						</td>
+						<td data-label="Type">
+							<div class="ui placeholder">
+								<div class="line"></div>
+							</div>
+						</td>
+						<td data-label="Type">
+							<div class="ui placeholder">
+								<div class="line"></div>
+							</div>
+						</td>
+					</tr>
+				</ng-template>
+	  		</tbody>
+		</table>
+	</div>
 </div>

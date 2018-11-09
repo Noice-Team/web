@@ -1,6 +1,26 @@
-<ng-container *ngIf="lobby; else noSet">
+<ng-container *ngIf="lobby withLoading" >
 	<h2 class="ui header">{{lobby.name}}</h2>
+	<div class="ui segment">
+		{{lobby.gameType}} game
+	</div>
+
+	<h3 class="ui header">Members</h3>
+
+	<div *ngIf="lobby.members[0].name withLoading" class="ui cards">
+		<div *ngFor="let member of lobby.members" class="card">
+    		<div class="content">
+				<div class="header">
+        			{{member.name}}
+      			</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<ng-container *ngIf="in;else joinBlock">
+		<button class="ui button" disabled>Invite</button>
+		<button class="ui button" (click)="leave()">Leave</button>
+	</ng-container>
+	<ng-template #joinBlock>
+		<button class="ui button" (click)="join()">Join</button>
+	</ng-template>
 </ng-container>
-<ng-template #noSet>
-	wait
-</ng-template>
