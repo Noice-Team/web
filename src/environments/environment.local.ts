@@ -13,7 +13,7 @@ export const environment = {
 		messagingSenderId: "410778438769"
 	},
 	urls:{
-		lobbies: "https://lobbies-dot-x-dev-ew3.appspot.com/"
+		lobbies: "http://localhost:8080/"
 	}
 };
 

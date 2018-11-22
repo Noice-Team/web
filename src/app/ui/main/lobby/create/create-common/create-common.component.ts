@@ -22,16 +22,11 @@ export class CreateCommonComponent {
 			if(user == null)
 				return;
 			this.data.name = user.name+"'s game";
-			this.data.owner = user.id;
 		})
 	}
 
 	public submit():void{
-		if(!this.data.owner){
-			//TODO error
-			return;
-		}
-		this.lobbyService.createLobby(this.data).then((result)=>{
+		this.lobbyService.createLobby(this.data).subscribe((result)=>{
 			console.log(result);
 			this.onCreated.emit();
 		});
