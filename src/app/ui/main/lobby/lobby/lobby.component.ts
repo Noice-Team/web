@@ -30,10 +30,6 @@ export class LobbyComponent {
 			this.lobbyService.getOne(id, true).subscribe(lobby => {
 				this.lobby = lobby;
 				this.checkIsIn();
-
-				this.userService.getByIds(<Array<string>>this.lobby.members).then(users =>{
-					this.lobby.members = users;
-				});
 			})
 		});
 	}

@@ -11,7 +11,6 @@ import { LobbyDb } from './lobby.db.model';
 export class CollectionProviderService {
 
 	public static get COLLECTION_NAME(){ return 'Lobbies';};
-	public static get COLLECTION_MEMBERS(){ return 'Members';};
 
 	public constructor(
 		private afStore: AngularFirestore){

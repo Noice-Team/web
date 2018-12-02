@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map, switchMap } from "rxjs/operators";
 
 import { CollectionProviderService } from '../collection-provider.service';
 import { Lobby } from '../lobby.model';
 import { LobbyDb } from '../lobby.db.model';
+
+import { UserService, User } from '../../user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ import { LobbyDb } from '../lobby.db.model';
 export class GetLobbyService {
 
 	constructor(
+		private userService:UserService,
 		private collectionService:CollectionProviderService) {}
 
 	public getAll(start?:number, size?:number):Observable<Array<Lobby>>{
@@ -21,7 +24,7 @@ export class GetLobbyService {
 		if(!size){
 			size = 30;
 		}
-		return this.collectionService.getMany(ref => ref.orderBy("_size").startAt(start).limit(size))
+		return this.collectionService.getMany(ref => ref.orderBy("size").startAt(start).limit(size))
 			.snapshotChanges()
 			.pipe(
 				map(snapshots => snapshots.map(snapshot => {
@@ -40,17 +43,15 @@ export class GetLobbyService {
 				switchMap(snapshot => {
 					let result = Object.assign(new Lobby, GetLobbyService.convertDate(snapshot.payload.data()));
 					result.id = snapshot.payload.id;
-					result.members=[];
-
 					if(getMembers){
-						return from(snapshot.payload.ref.collection(CollectionProviderService.COLLECTION_MEMBERS).get()).pipe(
-							map(subSnapshot =>{
-								subSnapshot.forEach(doc => {
-									result.members.push(doc.data()._user);
-								});
-								return result;
-							})
-						);
+						return forkJoin(
+							result.members.map(id => this.userService.getUser(id)))
+							.pipe(
+								map((users:User[])=>{
+									result.members = users;
+									return result;
+								})
+							);
 					}
 
 					return result;
@@ -60,7 +61,7 @@ export class GetLobbyService {
 	}
 
 	private static convertDate(data){
-		data._creationDate = data._creationDate.toDate();
+		data.creationDate = data.creationDate.toDate();
 		return data;
 	}
 }
