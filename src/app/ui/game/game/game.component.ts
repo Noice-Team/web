@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { Engine, Scene, FreeCamera, Light, Vector3,
-	HemisphericLight, MeshBuilder} from 'babylonjs';
+import { Engine, Scene,
+	FreeCamera, Camera,
+	Vector3, Color3, Color4,
+	DirectionalLight, MeshBuilder, SceneLoader} from 'babylonjs';
 
 @Component({
     selector: 'app-game',
@@ -17,7 +19,7 @@ export class GameComponent implements OnInit {
     private _engine: Engine;
     private _scene: Scene;
     private _camera: FreeCamera;
-    private _light: Light;
+    private _light: DirectionalLight;
 
     constructor() {
 		console.log("game");
@@ -34,28 +36,51 @@ export class GameComponent implements OnInit {
 
         this._scene = new Scene(this._engine);
 
-        // Create a FreeCamera, and set its position to (x:0, y:5, z:-10).
-        this._camera = new FreeCamera('camera1', new Vector3(0, 5, -10), this._scene);
+		this._camera = new FreeCamera('camera1', new Vector3(0, 10, 1), this._scene);
+		this._camera.attachControl(this._canvas, false);
+		this._camera.setTarget(new Vector3(0.1,0.1,0.1));
 
-        // Target the camera to scene origin.
-        this._camera.setTarget(Vector3.Zero());
+		this._light = new DirectionalLight("Omni", new Vector3(1, -1, 1), this._scene);
+		this._light.intensity = 0.5;
 
-        // Attach the camera to the canvas.
-        this._camera.attachControl(this._canvas, false);
+		// Target the camera to scene origin.
+		this._scene.clearColor = new Color4(1, 1, 1, 1);
+		this._scene.ambientColor = Color3.White();
 
-        // Create a basic light, aiming 0,1,0 - meaning, to the sky.
-        this._light = new HemisphericLight('light1', new Vector3(0, 1, 0), this._scene);
+		let box = MeshBuilder.CreateBox("box", {height: 5}, this._scene);
+		box.setAbsolutePosition(new Vector3(5,0,0))
 
-        // Create a built-in "sphere" shape; with 16 segments and diameter of 2.
-        let sphere = MeshBuilder.CreateSphere('sphere1',
-            { segments: 16, diameter: 2 }, this._scene);
 
-        // Move the sphere upward 1/2 of its height.
-        sphere.position.y = 1;
+		SceneLoader.ImportMesh("", "assets/models/", "tile.babylon", this._scene, (newMeshes) => {
+	        // Set the target of the camera to the first imported mesh
+			console.log(newMeshes);
+	        this._camera.setTarget(newMeshes[0].getAbsolutePosition());
 
-        // Create a built-in "ground" shape.
-        let ground = MeshBuilder.CreateGround('ground1',
-            { width: 6, height: 6, subdivisions: 2 }, this._scene);
+			let w = 1;
+			let h = 1.73205;
+
+			let floorMaterial = new BABYLON.StandardMaterial("Floor", this._scene);
+			floorMaterial.diffuseColor = new BABYLON.Color3(0.3, 0.8, 0.5);
+			floorMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+			floorMaterial.emissiveColor  = new BABYLON.Color3(0.5,0.5,0.5);
+			//floorMaterial.diffuseTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+			//floorMaterial.diffuseTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+
+			newMeshes[0].material = floorMaterial;
+
+			for(let x=-10;x < 10;++x){
+				for(let y = -10; y<10;++y){
+					let n = newMeshes[0].clone("1", null);
+					n.setAbsolutePosition(new Vector3(2*w*x+((y%2)*w),0,y*h));
+				}
+			}
+
+
+	    });
+		/*ImportMesh(["assets/models/tile.babylon"], "", "", this._scene, (meshes) => {
+			console.log(meshes);
+			this_.camera.target = meshes[0];
+		});*/
 	}
 
     doRender(): void {

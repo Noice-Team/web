@@ -4,10 +4,10 @@
 "multiMaterials":[],
 "skeletons":[],
 "meshes":[{"name":"Cylinder","id":"Cylinder","billboardMode":0,"position":[0,0,0],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":true,"freezeWorldMatrix":false,"isEnabled":true,"checkCollisions":false,"receiveShadows":false,"pickable":true,"tags":""
-,"positions":[0.866,0,0.5,-0.866,0,-0.5,-0.866,0,0.5,0,0,1,0.866,0,-0.5,0,0,-1]
-,"normals":[0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,-1,0]
-,"indices":[0,1,2,2,3,0,0,4,5,5,1,0]
-,"subMeshes":[{"materialIndex":0,"verticesStart":0,"verticesCount":6,"indexStart":0,"indexCount":12}]
+,"positions":[0,0,0,1,0,0.5774,0,0,1.1547,1,0,-0.5774,0,0,-1.1547,-1,0,-0.5774,-1,0,0.5774]
+,"normals":[0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]
+,"indices":[0,1,2,0,3,1,0,4,3,0,5,4,0,6,5,0,2,6]
+,"subMeshes":[{"materialIndex":0,"verticesStart":0,"verticesCount":7,"indexStart":0,"indexCount":18}]
 ,"instances":[]}
 ],
 "morphTargetManagers":[],

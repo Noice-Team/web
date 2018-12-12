@@ -13,13 +13,13 @@ Exporter version: 5.6.4, Blender version: 2.79 (sub 0)
 	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
 	processing begun of mesh:  Cylinder
 		WARNING: No materials have been assigned: 
-		num positions      :  6
-		num normals        :  6
+		num positions      :  7
+		num normals        :  7
 		num uvs            :  0
 		num uvs2           :  0
 		num colors         :  0
-		num indices        :  12
+		num indices        :  18
 ========= Writing of scene file started =========
 ========= Writing of scene file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.2181 secs
+elapsed time:  0 min, 0.008 secs
